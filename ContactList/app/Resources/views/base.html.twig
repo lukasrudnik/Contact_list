@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        {# Przesunięcie zawartości strony "trochę w dół" #}
+        <style>
+            body { padding-top: 4em; }
+            #footer { text-align: right; color: rgb(205, 205, 205);}
+        </style>
+    </head>
+    <body>
+        {# Nav #}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">{{ block('title') }}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li {# class="active" #}><a href="{{ path('contacts_person_index') }}">Home</a></li>
+                    <li {# class="active" #}><a href="{{ path('contacts_person_new') }}">Add Person</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+        {# Content #}
+        <div class="container theme-showcase" role="main">
+            {% block body %}{% endblock %}
+        </div>
+        {# Footer #}
+        <div class="container" role="footer" id="footer">
+          <div class="navbar-header navbar-left">
+            <a class="navbar-brand"></a>
+            {% block footer %}Contact Book <!--&copy; &reg;-->{% endblock %}
+        </div>
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

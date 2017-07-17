@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ person.name }} {{ person.surname }}{% endblock %}
+
+{% block body %}
+    <h1>{{ person.name }} {{ person.surname }}</h1>
+    <hr />
+    {% for phone in person.phones %}
+        <a href="tel:{{ phone.number }}">
+            {{ phone.number }} <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{ phone.type }}
+        </a>
+
+        <a href="{{
+            path(
+                'contacts_phone_delete',
+                {
+                   'phone_id':phone.id,
+                    'person_id':person.id
+                }
+            )
+            }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        <br/>
+    {% endfor %}
+    <a href="{{
+        path(
+            'contacts_phone_new',
+            {'person_id':person.id}
+        )
+        }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+    <hr />
+    <div class="well">
+        {{ person.description }}
+    </div>
+{% endblock %}

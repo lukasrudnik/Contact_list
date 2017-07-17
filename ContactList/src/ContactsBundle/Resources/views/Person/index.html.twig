@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+{% block title %}My contacts{% endblock %}
+{% block body %}
+    {% for person in persons %}
+        <div class="row">
+            <div class="col-xs-8">
+                <a href="{{ path('contacts_person_show',{'id':person.id}) }}">
+                    {{person.name}} {{person.surname}}
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="{{ path('contacts_person_edit',{'id':person.id}) }}"
+                    class="btn btn-warning">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <a href="{{ path('contacts_person_delete',{'id':person.id}) }}"
+                    class="btn btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <hr />
+    {% endfor %}
+{% endblock %}
